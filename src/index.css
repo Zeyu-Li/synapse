@@ -144,3 +144,27 @@ canvas {
   margin-top: 12px;
   border-radius: 10px;
 }
+
+/* dark mode */
+canvas {
+  background-color: rgb(44, 44, 44);
+}
+.mdc-card {
+  background-color: rgb(94, 94, 94);
+  color: whitesmoke;
+}
+#search_bar {
+  background-color: rgb(110, 110, 110);
+}
+.mdc-fab {
+  background-color: #444!important;
+}
+.material-icons, .mdc-icon-button {
+  filter: invert(100%);
+}
+#search {
+  color: #fff!important;
+}
+::placeholder {
+  color: #fff!important;
+}
