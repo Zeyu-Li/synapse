@@ -7,3 +7,4 @@ dist/*
 !dist/assets/
 *.ai
 !webpack.config.js
+static.zip
