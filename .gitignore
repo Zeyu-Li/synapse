@@ -8,3 +8,8 @@ dist/*
 *.ai
 !webpack.config.js
 static.zip
+
+log.txt
+
+data/ualberta.ca.json.patch
+data/ualberta.ca.old.json

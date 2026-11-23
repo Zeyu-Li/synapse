@@ -1,19 +1,12 @@
-@import "@material/button/mdc-button";
-@import "@material/card/mdc-card";
-@import "@material/dialog/mdc-dialog";
-@import "@material/elevation/mdc-elevation";
-@import "@material/fab/mdc-fab";
-@import "@material/icon-button/mdc-icon-button";
-@import "@material/ripple/mixins";
-@import "@material/rtl/mixins";
-@import "@material/shape/mixins";
-@import "@material/shape/functions";
-@import "@material/snackbar/mdc-snackbar";
-@import "@material/textfield/mdc-text-field";
-@import "@material/theme/color-palette";
-@import "@material/theme/functions";
-@import "@material/theme/mixins";
-@import "@material/typography/mdc-typography";
+@use "@material/button/mdc-button";
+@use "@material/card/mdc-card";
+@use "@material/dialog/mdc-dialog";
+@use "@material/elevation/mdc-elevation";
+@use "@material/fab/mdc-fab";
+@use "@material/icon-button/mdc-icon-button";
+@use "@material/snackbar/mdc-snackbar";
+@use "@material/textfield/mdc-text-field";
+@use "@material/typography/mdc-typography";
 
 :root {
   --mdc-theme-primary: #000;
@@ -26,17 +19,26 @@
 html,
 body {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
   overflow: hidden;
+  touch-action: none;
+  position: relative;
   background-color: var(--mdc-theme-background);
+}
+
+a,
+a:hover,
+a:visited {
+  color: #d81b60;
+  text-decoration: none;
 }
 
 .transition,
 .transition * {
   transition: background-color 1000ms cubic-bezier(0.4, 0, 0.2, 1),
-  color 100ms cubic-bezier(0.4, 0, 0.2, 1),
-  border-color 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+    color 100ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 1000ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark {
@@ -102,7 +104,7 @@ canvas,
 #graph > div {
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   top: 0;
 }
 
@@ -160,21 +162,27 @@ canvas,
   padding: 2px;
   will-change: auto;
 }
-
-#search_bar {
+nav {
   position: fixed;
   left: 16px;
-  top: 16px;
   z-index: 6;
+  display: flex;
+  top: 16px;
+  max-width: calc(100vw - 32px);
+}
+
+#search_bar {
   border-radius: 4px;
   background: var(--mdc-theme-surface);
 }
 
 #buttons {
-  position: fixed;
-  left: 300px;
-  top: 16px;
-  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+}
+
+#buttons > * {
+  margin-left: 8px;
 }
 
 .mdc-fab,
@@ -185,33 +193,24 @@ canvas,
   color: var(--mdc-theme-on-secondary);
 }
 
-#mobile {
-  display: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 16px;
-  display: none;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+.mdc-dialog .mdc-dialog__content {
+  color: var(--mdc-theme-primary);
 }
 
-#mobile p {
-  text-align: center;
+.button-row {
+  display: inline;
+  margin-left: 16px;
+}
+
+#demo_img {
+  background-image: url('https://steventango.github.io/synapse/assets/demo_light.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   width: 100%;
+  height: 300px;
 }
 
-@media screen and (max-width: 839px) {
-  #search_bar,
-  #delete_button,
-  main {
-    display: none;
-  }
-
-  #mobile {
-    display: flex;
-  }
+.dark #demo_img {
+  background-image: url('https://steventango.github.io/synapse/assets/demo_dark.png');
 }
