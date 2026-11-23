@@ -24,6 +24,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+
       - name: install and build
         run: |
           npm install

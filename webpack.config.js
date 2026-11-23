@@ -8,23 +8,18 @@ module.exports = [{
     rules: [
       {
         test: /\.scss$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'bundle.css',
+        },
         use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'bundle.css',
-            },
-          },
-          { loader: 'extract-loader' },
-          { loader: 'css-loader' },
           {
             loader: 'sass-loader',
             options: {
-              implementation: require('sass'),
-
               webpackImporter: false,
               sassOptions: {
-                includePaths: ['./node_modules']
+                loadPaths: ['./node_modules'],
+                quietDeps: true,
               },
             }
           },
@@ -38,7 +33,7 @@ module.exports = [{
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, 'dist'),
     compress: true,
     host: '0.0.0.0',
     port: 8080,

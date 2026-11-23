@@ -205,22 +205,30 @@ export default class Vertex {
     this.e = document.createElement("div");
     this.e.classList.add("mdc-card", "vertex", "mdc-elevation--z1");
     this.e.title = course.desc ? course.desc : "There is no available course description.";
+    // Static markup only: course data comes from scraped JSON, so it is set
+    // below via textContent/properties and never parsed as HTML.
     this.e.innerHTML = `
-      <h2 class="mdc-typography mdc-typography--headline6">${course.code}</h2>
-      <h3 class="mdc-typography mdc-typography--subtitle2">${course.name}</h3>
+      <h2 class="mdc-typography mdc-typography--headline6"></h2>
+      <h3 class="mdc-typography mdc-typography--subtitle2"></h3>
       <div class="mdc-card__action-icons">
-      <a href="${"https://apps.ualberta.ca/catalogue/course/"}${
-      rsplit(course.code).join("/").replace(" ", "_")
-    }" target="_blank" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon" aria-label="More" title="View ${course.code}">
+      <a target="_blank" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon" aria-label="More">
       open_in_new
       </a>
-      <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon" aria-label="Select" title="Select ${course.code}">
+      <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon" aria-label="Select">
       star
       </button>
-      <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon" aria-label="Remove" title="Delete ${course.code}">
+      <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon" aria-label="Remove">
       delete
       </button>
     </div>`;
+    this.e.querySelector("h2")!.textContent = course.code;
+    this.e.querySelector("h3")!.textContent = course.name;
+    const link: HTMLAnchorElement = this.e.querySelector('[aria-label="More"]')!;
+    link.href = "https://apps.ualberta.ca/catalogue/course/" +
+      rsplit(course.code).join("/").replace(" ", "_");
+    link.title = `View ${course.code}`;
+    this.e.querySelector<HTMLElement>('[aria-label="Select"]')!.title = `Select ${course.code}`;
+    this.e.querySelector<HTMLElement>('[aria-label="Remove"]')!.title = `Delete ${course.code}`;
 
     ["mousedown", "touchstart"].forEach((event) => {
       this.e.querySelector(".mdc-card__action-icons")!

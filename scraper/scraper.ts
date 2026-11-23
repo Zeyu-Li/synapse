@@ -44,7 +44,7 @@ async function launch() {
       "--no-sandbox",
       "--disable-setuid-sandbox"
     ],
-    ignoreHTTPSErrors: false,
+    acceptInsecureCerts: false,
   });
 
   return browser;
