@@ -12,7 +12,8 @@
     "@material/icon-button": "^11.0.0",
     "@material/snackbar": "^11.0.0",
     "@material/textfield": "^11.0.0",
-    "@material/typography": "^11.0.0"
+    "@material/typography": "^11.0.0",
+    "json-diff": "^1.0.6"
   },
   "devDependencies": {
     "@types/puppeteer": "^5.4.3",
@@ -30,9 +31,9 @@
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "build": "webpack",
-    "scrape": "tsc scraper/pool.ts scraper/scraper.ts --strict && node scraper/scraper.js",
-    "start": "webpack serve",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && webpack",
+    "scrape": "tsc scraper/pool.ts scraper/scraper.ts && node scraper/scraper.js",
+    "start": "export NODE_OPTIONS=--openssl-legacy-provider && webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
